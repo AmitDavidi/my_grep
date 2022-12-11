@@ -4,6 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 
+#define START_RANGE_INDEX 1
+#define END_RANGE_INDEX 3
+#define LEGNTH_OF_RANGE_STRING 5
 #define NO_PATTERN_MATCH 0
 #define PATTERN_MATCH 1
 #define EXACT_PATTERN_MATCH 2
@@ -62,8 +65,8 @@ int match_in_place(char *text, char *pattern)
     return match_in_place(text, pattern + 1);
   }
   if (*pattern == '[') {
-    if (*text >= pattern[1] && *text <= pattern[3]) {
-      return match_in_place(text + 1, pattern + 5);
+    if (*text >= pattern[START_RANGE_INDEX] && *text <= pattern[END_RANGE_INDEX]) {
+      return match_in_place(text + 1, pattern + LEGNTH_OF_RANGE_STRING);
     }
   }
 

@@ -1,10 +1,6 @@
 #include "simple_regex.h"
 #include "switch_manager.h"
 
-#define DIGITS_IN_MAX_INT 10
-#define MAX_FLAGS 10
-#define GETOPT_FINISHED_CODE -1
-
 char *createNeedle(Switch_Manager switch_enable_holder_arr, char *argv[], int argc)
 {
   /* create needle string */
@@ -122,14 +118,11 @@ void handle_prints(Switch_Manager switch_holder, char *needle, FILE *file_to_sea
 int main(int argc, char **argv)
 {
 
-  char *needle;
-  FILE *file_to_search;
-
   Switch_Manager switch_holder = fill_switch_holder(argc, argv);
 
-  needle = createNeedle(switch_holder, argv, argc);
+  char *needle = createNeedle(switch_holder, argv, argc);
 
-  file_to_search = CreateTextInput(argv, argc);
+  FILE *file_to_search = CreateTextInput(argv, argc);
 
   handle_prints(switch_holder, needle, file_to_search);
 
