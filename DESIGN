@@ -1,0 +1,1 @@
+simple_regex.h : a tool we can use to detect if a pattern is contained in a text, we can make it non-case sensitive, and Exact match sensitive.
