@@ -1,6 +1,7 @@
 #include "switch_manager.h"
 
 #define GETOPT_FINISHED_CODE -1
+#define LOOKED_AT 0
 
 Switch_Manager init_switch_manager()
 {
@@ -45,13 +46,13 @@ Switch_Manager fill_switch_holder(char argc, char **argv)
       case 'A':
         switch_holder.A = true;
         switch_holder.A_argument = strdup(argv[optind]);
-        argv[optind][0] = 0;
+        *argv[optind] = LOOKED_AT;
         break;
 
       case 'E':
         switch_holder.E = true;
         switch_holder.E_argument = strdup(argv[optind]);
-        argv[optind][0] = 0;
+        *argv[optind] = LOOKED_AT;
         break;
 
       case 'i':

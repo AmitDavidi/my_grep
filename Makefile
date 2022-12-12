@@ -13,3 +13,7 @@ test:
 .PHONY : clean
 clean:
 	\rm my_grep
+
+
+tidycode:
+	clang-format -i *.c *.h

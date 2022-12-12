@@ -94,7 +94,7 @@ bool text_contains_pattern(char *text, char *pattern, bool look_for_exact_match)
   return text_contains_pattern(text + 1, pattern, look_for_exact_match);
 }
 
-bool match_in_line(char *text, char *pattern, bool ignore_cases, bool look_for_exact_match)
+bool is_pattern_in_text(char *text, char *pattern, bool ignore_cases, bool look_for_exact_match)
 {
   char *altered_pattern = strdup(pattern);
   char *altererd_text = strdup(text);

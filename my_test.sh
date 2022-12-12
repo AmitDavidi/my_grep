@@ -1,4 +1,7 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
+echo > temp
+chmod 777 temp
+
 cat test.txt | grep  wANT > temp
 cat test.txt | ./my_grep  wANT | diff temp -
 

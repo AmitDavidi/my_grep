@@ -1,12 +1,11 @@
-#ifndef SIMPLE_REGEX_H
-#define SIMPLE_REGEX_H
+#ifndef PATTERN_MATCHER_H
+#define PATTERN_MATCHER_H
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
-bool match_in_line(char *line, char *needle, bool ignore_cases, bool look_for_exact_match);
+bool is_pattern_in_text(char *text, char *pattern, bool ignore_cases, bool look_for_exact_match);
 
 #endif
