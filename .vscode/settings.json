@@ -26,7 +26,8 @@
         "switch_manager.h": "c",
         "unistd.h": "c",
         "string.h": "c",
-        "libc-header-start.h": "c"
+        "libc-header-start.h": "c",
+        "pattern_matcher.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
