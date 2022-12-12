@@ -1,3 +1,7 @@
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
 #include "switch_manager.h"
 
 #define GETOPT_FINISHED_CODE -1

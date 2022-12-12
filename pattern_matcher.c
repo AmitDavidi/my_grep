@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "pattern_matcher.h"
 
 #define START_RANGE_INDEX 1

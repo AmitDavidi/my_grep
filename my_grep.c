@@ -1,11 +1,11 @@
-#include "pattern_matcher.h"
-#include "switch_manager.h"
-
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#include "pattern_matcher.h"
+#include "switch_manager.h"
 
 #define LOOKED_AT 0
 #define CAN_ACCESS_FILE 0

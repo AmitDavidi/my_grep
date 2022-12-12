@@ -27,5 +27,6 @@
         "unistd.h": "c",
         "string.h": "c",
         "libc-header-start.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
