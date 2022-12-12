@@ -1,5 +1,10 @@
-#include "simple_regex.h"
+#include "pattern_matcher.h"
 #include "switch_manager.h"
+
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 void remove_new_line_char(char *string) { string[strcspn(string, "\n")] = 0; }
 

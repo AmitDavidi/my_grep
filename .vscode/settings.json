@@ -22,6 +22,8 @@
         "numeric": "c",
         "ranges": "c",
         "string_view": "c",
-        "istream": "c"
+        "istream": "c",
+        "switch_manager.h": "c",
+        "unistd.h": "c"
     }
 }
