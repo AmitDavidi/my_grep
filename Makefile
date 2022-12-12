@@ -8,7 +8,7 @@ my_grep: my_grep.c
 .PHONY : test
 
 test: 
-	~/nimrodav/grep_tests/run_all.sh
+	~nimrodav/grep_tests/run_all.sh
 
 
 .PHONY : clean
