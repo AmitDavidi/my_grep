@@ -1,7 +1,4 @@
 #! /usr/bin/bash
-make clean
-make my_grep
-echo Starting...
 cat test.txt | grep  wANT > temp
 cat test.txt | ./my_grep  wANT | diff temp -
 
@@ -1534,4 +1531,3 @@ cat test.txt | ./my_grep -n -x -v -c -A 1 -i -E "o\.pdf" | diff temp -
 
 
 rm temp
-echo Done.

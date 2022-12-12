@@ -21,6 +21,7 @@
         "iosfwd": "c",
         "numeric": "c",
         "ranges": "c",
-        "string_view": "c"
+        "string_view": "c",
+        "istream": "c"
     }
 }

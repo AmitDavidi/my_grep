@@ -1,14 +1,13 @@
 #include "simple_regex.h"
 #include "switch_manager.h"
 
-char *createNeedle(Switch_Manager switch_enable_holder_arr, char *argv[], int argc)
-{
-  /* create needle string */
+void remove_new_line_char(char *string) { string[strcspn(string, "\n")] = 0; }
 
+char *createNeedle(Switch_Manager switch_holder, char *argv[], int argc)
+{
   char *needle;
-  if (switch_enable_holder_arr.E == true)  // get input from -E REGEX
-  {
-    needle = strdup(switch_enable_holder_arr.E_argument);
+  if (switch_holder.E == true) {
+    needle = strdup(switch_holder.E_argument);
   }
 
   else {
@@ -16,12 +15,9 @@ char *createNeedle(Switch_Manager switch_enable_holder_arr, char *argv[], int ar
     while (optind < argc && argv[optind][0] == 0) {
       optind++;
     }
-
-    needle = (char *)calloc(strlen(argv[optind]) + 1, sizeof(char));
-    strcpy(needle, argv[optind]);
-    argv[optind][0] = 0;  // remove from argv
+    needle = strdup(argv[optind]);
+    argv[optind][0] = 0;
   }
-
   return needle;
 }
 
@@ -60,15 +56,16 @@ void handle_extra_lines(bool *skipped_a_line, int *extra_lines_to_print, bool *p
   }
 }
 
-void remove_new_line_char(char *string) { string[strcspn(string, "\n")] = 0; }
-
 void handle_prints(Switch_Manager switch_holder, char *needle, FILE *file_to_search)
 {
-  int line_counter = 0, match_counter = 0, remaining_extra_lines = 0, num_of_bytes_in_line;
+  int line_counter = 0, match_counter = 0, remaining_extra_lines = 0, A_num = 0, num_of_bytes_in_line;
   size_t line_buf_size = 0;
   long int bytes_read = 0;
   bool line_skipped = false, print_dashes_next_match = false, found_needle, match, print_an_extra_line;
   char *line_buffer = NULL;
+  if (switch_holder.A) {
+    A_num = atoi(switch_holder.A_argument);
+  }
 
   while ((num_of_bytes_in_line = getline(&line_buffer, &line_buf_size, file_to_search)) != EOF) {
     line_counter++;
@@ -76,7 +73,6 @@ void handle_prints(Switch_Manager switch_holder, char *needle, FILE *file_to_sea
     found_needle = match_in_line(line_buffer, needle, switch_holder.i, switch_holder.x);
 
     match = ((found_needle == false && switch_holder.v == true) || (found_needle == true && switch_holder.v == false));
-
     print_an_extra_line = (switch_holder.A == true && remaining_extra_lines > 0);
 
     if (match || print_an_extra_line) {
@@ -87,8 +83,7 @@ void handle_prints(Switch_Manager switch_holder, char *needle, FILE *file_to_sea
       }
 
       if (switch_holder.A) {
-        handle_extra_lines(&line_skipped, &remaining_extra_lines, &print_dashes_next_match, switch_holder.A_argument,
-                           match);
+        handle_extra_lines(&line_skipped, &remaining_extra_lines, &print_dashes_next_match, A_num, match);
       }
 
       if (switch_holder.n) {
@@ -108,7 +103,6 @@ void handle_prints(Switch_Manager switch_holder, char *needle, FILE *file_to_sea
 
     bytes_read += num_of_bytes_in_line;
   }
-
   if (switch_holder.c) {
     printf("%d\n", match_counter);
   }
@@ -117,19 +111,14 @@ void handle_prints(Switch_Manager switch_holder, char *needle, FILE *file_to_sea
 
 int main(int argc, char **argv)
 {
-
   Switch_Manager switch_holder = fill_switch_holder(argc, argv);
 
   char *needle = createNeedle(switch_holder, argv, argc);
-
   FILE *file_to_search = CreateTextInput(argv, argc);
 
   handle_prints(switch_holder, needle, file_to_search);
 
-  if (switch_holder.E) {
-    free(switch_holder.E_argument);
-  }
-
+  free_switch_holder(switch_holder);
   free(needle);
   fclose(file_to_search);
 
