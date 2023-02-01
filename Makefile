@@ -1,19 +1,16 @@
 all: my_grep
 .PHONY : all
 
-my_grep: my_grep.c
-	gcc -Wall -Wextra -g *.c -o my_grep
+CC = gcc
+CFLAGS = -g -Wall
 
-
-.PHONY : test
-
-test: 
-	~nimrodav/grep_tests/run_all.sh
+my_grep: my_grep.c pattern_matcher.c switch_manager.c
+	$(CC) $(CFLAGS) -o my_grep my_grep.c pattern_matcher.c switch_manager.c
 
 
 .PHONY : clean
 clean:
-	\rm my_grep
+	\rm my_grep || true
 
 
 tidycode:

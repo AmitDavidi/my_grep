@@ -1,2 +1,0 @@
-pattern_matcher.h : a tool we can use to detect if a *pattern* has a *match* in a text, we can make it non-case sensitive, and Exact *match* sensitive.
-switch_manager : a tool we can use to store *switch* and *manage* data that was given by the user in the form of switches and arguments.
